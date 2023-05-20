@@ -1,0 +1,28 @@
+<nav>
+    <div>
+        <a class="logo-area" href="/">
+            <h1>INŠURENC KAMPENY</h1>
+            <img class="logo" src="../../image/umbrella-icon.png" alt="umbrella icon">
+        </a>
+    </div>
+    <div class="nav-menu-toggle" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+        <li id="navInsurances" class="<%= activePage === 'insurances' ? 'active' : '' %>"><a href="/insurances">POJISTKY</a></li>
+        <li id="navInsureds" class="<%= activePage === 'insureds' ? 'active' : '' %>"><a href="/insureds">POJIŠTĚNCI A POJISTITELÉ</a></li>
+        <li id="navNewInsurance" class="<%= activePage === 'new-insurance' ? 'active' : '' %>"><a href="/insurances/create">NOVÁ POJISTKA</a></li>
+        <li id="navNewInsured" class="<%= activePage === 'new-insured' ? 'active' : '' %>"><a href="/insureds/create">NOVÝ POJIŠTĚNEC/POJISTNÍK</a></li>
+    </ul>
+    <div class="user-area">
+        <img class="profile-picture" src="../../image/male.png" alt="user profile picture">
+        <div class="user-area-text">
+            <p class="user-name">Tomáš Skvostný</p>
+            <span class="logout">
+                <a href="#"><small>Odhlásit</small></a>
+            </span>
+        </div>
+    </div>
+</nav>

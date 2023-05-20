@@ -1,0 +1,55 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+<main>
+    <form class="insurance-form" action="/insurances/update" method="POST">
+        <input type="text" hidden name="id" value="<%= insurance.id %>" data-original-value="<%= insurance.id %>">
+        <input type="text" hidden
+               name="insured_id"
+               value="<%= insurance.insured_id %>"
+               data-original-value="<%= insurance.insured_id %>"
+        >
+        <div class="form-group">
+            <h2>Číslo pojistky: <%= insurance.policy_number %></h2>
+        </div>
+        <div class="form-group">
+            <label for="starts">Platná od:</label>
+            <input type="date" id="starts" disabled
+                   name="start_date"
+                   value="<%= insurance.start_date %>"
+                   data-original-value="<%= insurance.start_date %>"
+            >
+        </div>
+        <div class="form-group">
+            <label for="ends">Platná do:</label>
+            <input type="date" id="ends" disabled
+                   name="end_date"
+                   value="<%= insurance.end_date %>"
+                   data-original-value="<%= insurance.end_date %>"
+            >
+        </div>
+        <div class="form-group">
+            <label for="amount">Splátka:</label>
+            <input type="text" id="amount" disabled
+                   name="premium_amount"
+                   value="<%= insurance.premium_amount %>"
+                   data-original-value="<%= insurance.premium_amount %>"
+            >
+        </div>
+        <div class="form-group">
+            <label for="details">Detaily krytí:</label>
+            <textarea type="text" id="details" disabled
+                      name="coverage_details"
+                      data-original-value="<%= insurance.coverage_details %>"
+            ><%= insurance.coverage_details %></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="editButton" onclick="toggleInsuranceEdit()">Upravit</button>
+            <button type="submit" id="submitButton">Uložit</button>
+            <button type="button" id="cancelButton" onclick="cancelInsuranceEdit()">Zrušit</button>
+        </div>
+    </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>

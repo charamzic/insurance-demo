@@ -1,0 +1,49 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+<main>
+    <form class="insurance-form" action="/insureds/update" method="POST">
+        <input type="text" hidden name="id" value="<%= insured.id %>" data-original-value="<%= insured.id %>">
+        <h2>Klient</h2>
+        <div class="form-group">
+
+        </div>
+        <div class="form-group">
+            <label for="name">Jméno:</label>
+            <input type="text" id="name" disabled
+                   name="name"
+                   value="<%= insured.name %>"
+                   data-original-value="<%= insured.name %>"
+            >
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" disabled
+                   name="email"
+                   value="<%= insured.email %>"
+                   data-original-value="<%= insured.email %>"
+            >
+        </div>
+        <div class="form-group">
+            <label for="type">Pojistník/pojištěný:</label>
+            <p id="type"><%= insured.insured_type === null ? '' : insured.insured_type === 'insured' ? 'pojištěný' : 'pojistník' %></p>
+            <input type="hidden" name="insured_type" value="<%= insured.insured_type %>">
+        </div>
+        <div class="form-group">
+            <label for="insureds-insurances">Sjednané pojistky:</label>
+            <ul id="insureds-insurances">
+                <% insurances.forEach((insurance, i) => { %>
+                    <li><a href="/insurances/<%= insurance.id %>"><%= insurance.policy_number %><%= i !== insurances.length - 1 ? ',' : '' %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <button type="button" id="editButton" onclick="toggleInsuredEdit()">Upravit</button>
+            <button type="submit" id="submitButton">Uložit</button>
+            <button type="button" id="cancelButton" onclick="cancelInsuredEdit()">Zrušit</button>
+        </div>
+    </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>

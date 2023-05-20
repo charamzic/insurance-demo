@@ -1,0 +1,40 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+<main>
+    <form class="insurance-form" action="/insurances" method="POST">
+        <% if (successMessage) { %>
+            <div id="successMessage" class="alert alert-success">
+                <strong>Success:</strong> <%= successMessage %>
+            </div>
+        <% } %>
+        <div class="form-group">
+            <label for="insured_id">ID pojištěného:</label>
+            <select id="insured_id" name="insured_id">
+                <% insureds.forEach(insured => { %>
+                    <option value="<%= insured.id %>"><%= insured.id + ' | ' + insured.name %></option>
+                <% }); %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="starts">Platná od:</label>
+            <input type="date" id="starts" name="start_date">
+        </div>
+        <div class="form-group">
+            <label for="ends">Platná do:</label>
+            <input type="date" id="ends" name="end_date">
+        </div>
+        <div class="form-group">
+            <label for="amount">Splátka:</label>
+            <input type="text" id="amount" name="premium_amount">
+        </div>
+        <div class="form-group">
+            <label for="details">Detaily krytí:</label>
+            <input type="text" id="details" name="coverage_details">
+        </div>
+
+        <button type="submit" onclick="submitForm()">Vytvořit</button>
+    </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>
