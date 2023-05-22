@@ -1,13 +1,17 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
+
+import auth from "./route/auth/authRoutes.js";
 import home from './route/homeRoutes.js';
 import insureds from './route/insuredRoutes.js';
 import insuredsApi from './route/api/insuredApiRoutes.js';
 import insurancesApi from './route/api/insuranceApiRoutes.js';
-import users from "./route/userRoutes.js";
 import insurance from "./route/insuranceRoutes.js";
+import { checkUser } from "./config/authMiddleware.js";
+import router from "./route/insuranceRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -17,12 +21,17 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cookieParser());
 app.use(cors({
     origin: [process.env.CORS_JAVAJITSU, process.env.CORS_LOCALHOST]
 }));
 
+
+app.use('*', checkUser);
+
+app.use(auth);
+
 app.use('/', home);
-app.use('/users', users);
 app.use('/insureds', insureds);
 app.use('/insurances', insurance);
 

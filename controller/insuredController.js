@@ -1,7 +1,7 @@
 import { insuredRepo } from "../repository/insuredRepo.js";
 import { insuranceRepo } from "../repository/insuranceRepo.js";
 import insuredType from '../enum/insuredType.js'
-import { NOT_FOUND_MESSAGE } from "../messages.js";
+import { NOT_AUTHORIZED_MESSAGE, NOT_FOUND_MESSAGE } from "../messages.js";
 import { validator } from "../util/validator.js";
 import { Insured } from "../model/Insured.js";
 
@@ -12,7 +12,6 @@ async function getAllInsureds(req, res) {
     } catch (err) {
         console.error(`insuredController::getAllInsureds: ${err}`);
     }
-    console.log(result)
     res.render('insured/insureds', { title: 'Insureds', insureds: result, activePage: 'insureds' });
 }
 
@@ -78,8 +77,6 @@ const postInsuredCreate = async (req, res) => {
 };
 
 const postInsuredUpdate = async (req, res) => {
-    console.log("===========")
-    console.log(req.body)
     try {
         const { id } = req.body;
         const updatedInsured = await insuredRepo.updateInsured(id, req.body);
@@ -99,6 +96,10 @@ const postInsuredUpdate = async (req, res) => {
 };
 
 const insuredDelete = async (req, res) => {
+    if (req.cookies.loggedAs !== process.env.AUTH_USER) {
+        console.error(`insuredController::insuredDelete: ${NOT_AUTHORIZED_MESSAGE}`);
+        return res.sendStatus(401);
+    }
     try {
         const { id } = req.params;
         await insuredRepo.deleteInsured(id);

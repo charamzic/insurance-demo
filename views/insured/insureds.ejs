@@ -10,29 +10,33 @@
             <th class="center-column">Email</th>
             <th class="center-column">Typ</th>
             <th class="center-column">Detail</th>
-            <th class="center-column">Smazat</th>
+            <% if (user === 'Gandalf') { %>
+                <th class="center-column">Smazat</th>
+            <% } %>
         </tr>
         </thead>
         <tbody>
         <% if (insureds.length > 0) { %>
-        <% insureds.forEach((insured) => { %>
-            <tr class="content-row">
-                <td class="center-column"><%= insured.id %></td>
-                <td><%= insured.name %></td>
-                <td><%= insured.email %></td>
-                <td><%= insured.insured_type === null ? '' : insured.insured_type === 'insured' ? 'pojištěný' : 'pojistník' %></td>
-                <td class="center-column detail">
-                    <a href="/insureds/<%= insured.id %>">
-                        <img class="detail-icon" src="/image/detail.png" alt="detail icon">
-                    </a>
-                </td>
-                <td class="center-column detail">
-                    <a id="delete-btn" data-del="<%= insured.id %>" onclick="deleteInsured(event)">
-                        <img class="detail-icon" src="/image/trash.png" alt="detail icon">
-                    </a>
-                </td>
-            </tr>
-        <% }); %>
+            <% insureds.forEach((insured) => { %>
+                <tr class="content-row">
+                    <td class="center-column"><%= insured.id %></td>
+                    <td><%= insured.name %></td>
+                    <td><%= insured.email %></td>
+                    <td><%= insured.insured_type === null ? '' : insured.insured_type === 'insured' ? 'pojištěný' : 'pojistník' %></td>
+                    <td class="center-column detail">
+                        <a href="/insureds/<%= insured.id %>">
+                            <img class="detail-icon" src="/image/detail.png" alt="detail icon">
+                        </a>
+                    </td>
+                    <% if (user === 'Gandalf') { %>
+                        <td class="center-column detail">
+                            <a id="delete-btn" data-del="<%= insured.id %>" onclick="deleteInsured(event)">
+                                <img class="detail-icon" src="/image/trash.png" alt="detail icon">
+                            </a>
+                        </td>
+                    <% } %>
+                </tr>
+            <% }); %>
         <% } else { %>
             <p>Nejsou k dispozici žádná data.</p>
         <% } %>

@@ -43,7 +43,6 @@ const createInsurance = async insurance => {
 };
 
 const updateInsurance = async (id, insurance) => {
-    console.log(insurance)
     const { insured_id, start_date, end_date, premium_amount, coverage_details } = insurance;
     await pool.query(
         `

@@ -1,9 +1,5 @@
 const logout = document.querySelector('.logout');
 
-logout.addEventListener('click', (e) => {
-    console.log('clicked!!!');
-})
-
 function toggleMenu() {
     const navMenu = document.getElementById("navMenu");
     navMenu.classList.toggle("open");
@@ -176,3 +172,21 @@ function deleteInsured(event) {
         .then((data) => window.location.href = data.redirect)
         .catch(err => console.error(err));
 }
+
+const login = async name => {
+
+    const profilePic = document.querySelector('.profile-picture');
+    const profileNameText = document.querySelector('.user-name');
+
+    fetch(`/login/${name}`)
+        .then(async response => {
+            // Handle the response
+            profilePic.setAttribute('src', `../../image/${name.toLowerCase()}.png`);
+            profileNameText.textContent = 'Logout';
+            const data = await response.json();
+        })
+        .catch(error => {
+            // Handle the error
+            console.error(error);
+        });
+};

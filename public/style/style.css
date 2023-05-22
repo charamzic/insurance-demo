@@ -39,6 +39,7 @@ p, h1, h2, h3, h4, h5, h6 {
     --main-bg-color: beige;
     --main-font: 'Rubik', sans-serif;
     --main-font-color: #444444;
+    --main-hover-color: rgba(139, 69, 19, 0.47);
 }
 
 nav {
@@ -67,13 +68,13 @@ nav {
 .nav-menu li:hover {
     cursor: pointer;
     color: beige;
-    background-color: saddlebrown;
+    background-color: var(--main-hover-color);
     transition: background-color 1s;
 }
 
 .nav-menu li.active {
     color: beige;
-    background-color: saddlebrown;
+    background-color: var(--main-hover-color);
 }
 
 
@@ -98,25 +99,33 @@ a {
     align-items: center;
     justify-content: space-around;
     flex-basis: 15%;
-    margin-right: 10px;
 }
-
-.user-area a {
-    padding-left: 10px;
-    text-decoration: none;
-}
-
 .user-area a:hover {
-    color: brown;
+    color: var(--main-bg-color);
+    background-color: var(--main-hover-color);
 }
 
 .logout {
     display: flex;
     flex-flow: row-reverse;
 }
+.profile-picture-container {
+    width: 45px;
+    height: 45px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background-color: var(--main-hover-color);
+    overflow: hidden;
 
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
 .profile-picture {
-    width: 50px;
+    /*border: 1px solid #000;*/
+    /*border-radius: 50%;*/
+    width: 40px;
+    vertical-align: bottom;
 }
 
 main {
@@ -171,7 +180,7 @@ label {
 
 #insureds-insurances a:hover {
     font-weight: bold;
-    color: saddlebrown;
+    color: var(--main-hover-color);
 }
 
 input[type="text"], input[type="email"], input[type="date"], select {
@@ -197,6 +206,10 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+button:hover {
+    color: var(--main-bg-color);
+    background-color: var(--main-hover-color);
 }
 
 #cancelButton {
@@ -275,7 +288,7 @@ footer p {
 
 footer a {
     font-weight: bold;
-    color: saddlebrown;
+    color: var(--main-hover-color);
 }
 
 .alert {

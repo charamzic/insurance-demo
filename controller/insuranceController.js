@@ -1,8 +1,9 @@
 import { insuranceRepo } from "../repository/insuranceRepo.js";
 import { validator } from "../util/validator.js";
-import { NOT_FOUND_MESSAGE } from "../messages.js";
+import { NOT_AUTHORIZED_MESSAGE, NOT_FOUND_MESSAGE } from "../messages.js";
 import { insuredRepo } from "../repository/insuredRepo.js";
 import { Insurance } from "../model/Insurance.js";
+import dotenv from 'dotenv';
 
 const getAllInsurances = async (req, res) => {
     try {
@@ -84,6 +85,10 @@ const postInsuranceUpdate = async (req, res) => {
 };
 
 const insuranceDelete = async (req, res) => {
+    if (req.cookies.loggedAs !== process.env.AUTH_USER) {
+        console.error(`insuredController::insuredDelete: ${NOT_AUTHORIZED_MESSAGE}`);
+        return res.sendStatus(401);
+    }
     try {
         const { id } = req.params;
         await insuranceRepo.deleteInsurance(id);
