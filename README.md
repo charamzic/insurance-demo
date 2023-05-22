@@ -1,6 +1,7 @@
 # Aplikace správa pojištění
 Dělal jsem v rámci učení se javascriptu. Jde o jednoduchou aplikaci na správu klientů a jejich pojistek.
-Postupně budu ladit. Aktuálně chybí stránkování, sofistikovaný error handling a dotažená validace. Strukturu jsem se snažil držet rozumnou, ale vždy je co zlepšovat :D
+Postupně budu ladit. Aktuálně chybí stránkování, sofistikovaný error handling a dotažená validace. 
+Strukturu jsem se snažil držet rozumnou, ale vždy je co zlepšovat. A je to takové poloresponzivní 😁
 
   - Přehled pojistek
   - Detail pojistky
