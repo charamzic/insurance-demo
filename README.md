@@ -12,8 +12,8 @@ Strukturu jsem se snažil držet rozumnou, ale vždy je co zlepšovat. A je to t
   - Smazání pojištěného/pojistníka
   - Dvě uživatelské role: Admin & User
 
-### [Demo k vyzkoušení 👈](https://path/to/there.com)
-[![Page preview](public/image/preview.png "Page preview")](https://something)
+### [Demo k vyzkoušení 👈](https://insurance-demo-production.up.railway.app/)
+[![Page preview](public/image/preview.png "Page preview")](https://insurance-demo-production.up.railway.app/)
 
 ## API 🤙
 ### Get
